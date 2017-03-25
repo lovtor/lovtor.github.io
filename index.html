@@ -29,10 +29,12 @@
 								)])
                 .range([padding, w-padding * 2]);
     var yScale = d3.scale.linear()
-                 .domain([0, d3.max(dataset, function(d) {return d['NumVehicle']; })])
+                 .domain([0, Math.max(
+								  d3.max(dataset, function(d) {return d['NumVehicle']; })])
                  .range([h-padding, padding]);
     var rScale = d3.scale.linear()
-                 .domain([0, d3.max(dataset, function(d) {return d['Category'];})])
+                 .domain([0, Math.max(
+									d3.max(dataset, function(d) {return d['Category'];})])
                  .range([1,30]);
 
   //Create SVG element
