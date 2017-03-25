@@ -25,7 +25,7 @@
 
     var xScale = d3.scale.linear()
                 .domain([0, Math.max(
-								d3.max(dataset, function(d) {return d['NumPros']+h; })
+								d3.max(dataset, function(d) {return d['NumPros']; })
 								)])
                 .range([padding, w-padding * 2]);
     var yScale = d3.scale.linear()
@@ -35,7 +35,7 @@
     var rScale = d3.scale.linear()
                  .domain([0, Math.max(
 									d3.max(dataset, function(d) {return d['Category'];})])
-                 .range([1,30]);
+                 .range([1,15]);
 
   //Create SVG element
   var svg = d3.select("body")
@@ -47,6 +47,10 @@
   var xAxis = d3.svg.axis()
              .scale(xScale)
             .orient("bottom");
+
+	var yAxis = d3.svg.axis()
+					  .scale(yScale)
+					  .orient("left");
 
   //Create the circles
   svg.selectAll("circle")
@@ -64,6 +68,7 @@
     . attr("class", "axis")
     . attr("transform", "translate(0," + (h-padding) + ")")
     .call(xAxis);
+		.call(yAxis);
     });
 		</script>
 	</body>
