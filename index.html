@@ -8,14 +8,15 @@
 	<body>
 		<script type="text/javascript">
     var dataset;
-			d3.csv("DataSet2003.csv", function(dataset) {
-        dataset.forEach(function(d) {
-          d.Category = +d.Category;
-          d.NumPros = +d.NumPros;
-          d.NumVehicle = +d.NumVehicle;
+		d3.csv("DataSet2003.csv", function(dataset) {
+		// Strings to number
+      dataset.forEach(function(d) {
+            d.Category = +d.Category;
+            d.NumPros = +d.NumPros;
+            d.NumVehicle = +d.NumVehicle;
 			});
       console.log(dataset);
-    });
+
 
     // Width and height
     var w = 500;
@@ -61,7 +62,7 @@
     . attr("class", "axis")
     . attr("transform", "translate(0," + (h-padding) + ")")
     .call(xAxis);
-
+    });
 		</script>
 	</body>
 </html>
