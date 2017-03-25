@@ -7,14 +7,14 @@
 	</head>
 	<body>
 		<script type="text/javascript">
-    var data;
-			d3.csv("DataSet2003.csv", function(data) {
+    var dataset;
+			d3.csv("DataSet2003.csv", function(dataset) {
         data.forEach(function(d) {
           d.Category = +d.Category;
           d.NumPros = +d.NumPros;
           d.NumVehicle = +d.NumVehicle;
 			});
-      console.log(data);
+      console.log(dataset);
     });
 
     // Width and height
@@ -24,14 +24,14 @@
 
     var xScale = d3.scale.linear()
                 .domain([0, Math.max(
-								d3.max(data, function(d) {return d['NumPros']+h; })
+								d3.max(dataset, function(d) {return d['NumPros']+h; })
 								)])
                 .range([padding, w-padding * 2]);
     var yScale = d3.scale.linear()
-                 .domain([0, d3.max(data, function(d) {return d['NumVehicle']; })])
+                 .domain([0, d3.max(dataset, function(d) {return d['NumVehicle']; })])
                  .range([h-padding, padding]);
     var rScale = d3.scale.linear()
-                 .domain([0, d3.max(data, function(d) {return d['Category'];})])
+                 .domain([0, d3.max(dataset, function(d) {return d['Category'];})])
                  .range([2,5]);
 
   //Create SVG element
@@ -47,7 +47,7 @@
 
   //Create the circles
   svg.selectAll("circle")
-      .data(data)
+      .data(dataset)
       .enter()
       .append("circle")
 
