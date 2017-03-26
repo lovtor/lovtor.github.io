@@ -101,6 +101,7 @@
 					});
 
 					function drawLocation(k_ID) {
+						locations.selectAll("circle").remove()
 						d3.csv("DataSet2B.csv", function(data_loc) {
 							console.log(json);
 							locations.selectAll("circle")
