@@ -18,6 +18,7 @@
 			//Width and height
 			var w = 700;
 			var h = 700;
+
 			//Define map projection
             var projection = d3.geo.mercator()
                 .center([-122.41819474198758, 37.774145825475955])
@@ -33,11 +34,14 @@
 						.append("svg")
 						.attr("width", w)
 						.attr("height", h);
+     var MapSanFran = svg.append("g");
+     var CircleMean = svg.append("g");
+     var CircleLocation = svg.append("g");
 
 
                 //Bind data and create one path per GeoJSON feature
                d3.json("https://raw.githubusercontent.com/suneman/socialdataanalysis2017/master/files/sfpddistricts.geojson", function(json){
-               	svg.selectAll("path")
+               	MapSanFran.selectAll("path")
                     .data(json.features)
                     .enter()
                     .append("path")
@@ -50,7 +54,7 @@
 
 				d3.csv("locations-WHATUP.csv", function(data_loc) {
 					console.log(json);
-					svg.selectAll("circle")
+					CircleLocation.selectAll("circle")
 					   .data(data_loc)
 					   .enter()
 					   .append("circle")
@@ -66,7 +70,7 @@
 					});
 
 				d3.csv("dfCentersXY.csv", function(data_center){
-					svg.selectAll("circle")
+					CircleMean.selectAll("circle")
 						.data(data_center)
 						.enter()
 						.append("circle")
