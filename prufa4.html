@@ -145,6 +145,7 @@
 d3.selectAll(".kernelButton").on("click", function(){
 			buttonID = d3.select(this).attr("id")
 			drawLocation(buttonID)
+			drawCenters(buttonID)
 			console.log(buttonID)
 		});
 
