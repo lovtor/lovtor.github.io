@@ -15,11 +15,11 @@
 	</head>
 	<body>
 
-    <button id=KMean2 class="kernelButton">K2</button>
-    <button id=KMean3 class="kernelButton">K3</button>
-    <button id=KMean4 class="kernelButton">K4</button>
-    <button id=KMean5 class="kernelButton">K5</button>
-    <button id=KMean6 class="kernelButton">K6</button>
+    <button id="KMean2" class="kernelButton">K2</button>
+    <button id="KMean3" class="kernelButton">K3</button>
+    <button id="KMean4" class="kernelButton">K4</button>
+    <button id="KMean5" class="kernelButton">K5</button>
+    <button id="KMean6" class="kernelButton">K6</button>
 
 		<script type="text/javascript">
 			//Width and height
@@ -117,8 +117,9 @@
 							   .attr("r", 5)
 							   .style("fill", function(d){
 		               var value = d.k_ID;
-		               return color[value];
-		               console.log(values);
+									 console.log('Thetta er value');
+									 console.log(values);
+									 return color[value];
 		             })
 		             .style("opacity",0.75);
 							});
