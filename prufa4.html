@@ -126,6 +126,13 @@
 var k_ID = "KMean4";
 drawLocation(k_ID);
 
+d3.selectAll(".kernelButton").on("click", function(){
+			buttonID = d3.select(this).attr("id")
+			drawLocation(buttonID)
+			console.log(buttonID)
+		});
+
+
 					});
 
 
