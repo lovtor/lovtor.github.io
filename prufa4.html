@@ -100,6 +100,32 @@
             .attr("stroke", "black")
 					});
 
+					function drawLocation(k_ID) {
+						d3.csv("DataSet2B.csv", function(data_loc) {
+							console.log(json);
+							locations.selectAll("circle")
+							   .data(data_loc)
+							   .enter()
+							   .append("circle")
+							   .attr("cx", function(d) {
+								   return projection([d.X, d.Y])[0];
+							   })
+							   .attr("cy", function(d) {
+								   return projection([d.X, d.Y])[1];
+							   })
+							   .attr("r", 5)
+							   .style("fill", function(d){
+		               var value = d.k_ID;
+		               return color[value];
+		               console.log(values);
+		             })
+		             .style("opacity",0.75);
+							});
+
+						}
+var k_ID = KMean4;
+drawLocation(k_ID);
+
 					});
 
 
