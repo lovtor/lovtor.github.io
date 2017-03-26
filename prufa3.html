@@ -11,6 +11,19 @@
 		<script src="https://d3js.org/d3-queue.v3.min.js"></script>
 		<style type="text/css">
 			/* No style rules here yet */
+      .K0 { fill: #334D5C;}
+  		.K1 { fill: #45B29D;}
+  		.K2 { fill: #EFC94C;}
+  		.K3 { fill: #E27A3F;}
+  		.K4 { fill: #DF5A49;}
+  		.K5 { fill: #4F84B9;}
+
+  		.K0.meanCircles { fill: #4E758C;}
+  		.K1.meanCircles { fill: #5DF0CD;}
+  		.K2.meanCircles { fill: #FFDD6B;}
+  		.K3.meanCircles { fill: #FF9C63;}
+  		.K4.meanCircles { fill: #FF7361;}
+  		.K5.meanCircles { fill: #3593D6;}
 		</style>
 	</head>
 	<body>
@@ -65,8 +78,10 @@
 						   return projection([d.X, d.Y])[1];
 					   })
 					   .attr("r", 5)
-					   .style("fill", "coral")
-					   .style("opacity", 0.1);
+					   .style("fill", function(d){
+               var value = d.KMean2;
+               return color(values);
+             })
 					});
 
 				d3.csv("DataSet2B_center.csv", function(data_center){
