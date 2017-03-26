@@ -121,8 +121,26 @@
 		             })
 		             .style("opacity",0.75);
 							});
-
 						}
+
+						function drawCenters(k_ID) {
+							centers.selectAll("circle").remove()
+							d3.csv("DataSet2B_center_new3.csv", function(data_center){
+								centers.selectAll("circle")
+									.data(data_center)
+									.enter()
+									.append("circle")
+									.attr("cx", function(d) {
+										return projection([+d['X_'+k_ID], +d['Y_'+k_ID]])[0]
+									})
+									.attr("cy", function(d) {
+										return projection([+d['X_'+k_ID], +d['Y_'+k_ID]])[1]
+									})
+									.attr("r", 10)
+			            .style("fill", "red")
+			            .attr("stroke", "black")
+								});
+							}
 
 d3.selectAll(".kernelButton").on("click", function(){
 			buttonID = d3.select(this).attr("id")
