@@ -67,7 +67,6 @@
 					function drawLocation(k_ID) {
 						locations.selectAll("circle").remove()
 						d3.csv("DataSet2Bnew2.csv", function(data_loc) {
-							console.log(data_loc);
 							locations.selectAll("circle")
 							   .data(data_loc)
 							   .enter()
@@ -113,14 +112,8 @@ d3.selectAll(".kernelButton").on("click", function(){
 			ID_button = d3.select(this).attr("id")
 			drawLocation(ID_button)
 			drawCenters(ID_button)
-			console.log(ID_button)
 		});
-
-
 					});
-
-
-
 		</script>
 	</body>
 </html>
