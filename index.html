@@ -4,30 +4,111 @@
     <head>
     <meta charset="utf-8">
     <title> D3: Assignment 2</title>
-    <script type="text/javascript" src="../d3/d3.js"></script>
-    <style type="text/css">
-        .axis path,
-        .axis line {
-            fill:none;
-            stroke: black;
-            shape-rendering: auto;
-        }
-        .axis text {
-            font-family: sans-serif;
-            font-size: 11px;
-        }
+    <script type="text/javascript" src="d3/d3.js"></script>
+        <style type="text/css">
 
+            .axis path,
+            .axis line {
+                fill:none;
+                stroke: black;
+                shape-rendering: auto;
+            }
+            .axis text {
+                font-family: sans-serif;
+                font-size: 11px;
+            }
+
+            text, h1, h2, p, strong {
+                font-family: Helvetica, Arial, sans-serif;
+            }
+
+            p2 {
+                text-align:center;
+                font-family: Helvetica, Arial, sans-serif;
+            }
+            p3 {
+                font-weight: bold;
+                text-align:center;
+                color:#00fa9a;
+                font-family: Helvetica, Arial, sans-serif;
+            }
+            p4 {
+                font-weight: bold;
+                text-align:center;
+                color: #8dadde;
+                font-family: Helvetica, Arial, sans-serif;
+            }
+
+            .section {
+                width: 1000px;
+                height: 200px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .Viz{
+                text-align: center;
+            }
+
+
+.bla{
+    display: inline-block;
+    word-wrap: break-word;;
+}
+
+            button {
+                margin: 0 auto;
+                background-color:#ededed;
+                -moz-border-radius:6px;
+                -webkit-border-radius:6px;
+                border-radius:6px;
+                border:1px solid #dcdcdc;
+                display:inline-block;
+                cursor:pointer;
+                color:#000000;
+                font-size:15px;
+                font-weight:bold;
+                padding:6px 24px;
+                text-decoration:none;
+             }
 
     </style>
 </head>
     <body>
 
-    <button id='id2003'> Click here to toggle between data from 2003 and 2015 </button>
+        <div>
+            <div class="section">
+                    <h2> Assignment 2A: One scatter and two datasets </h2>
+                <div>
+                        <p2>The scatter plot below describes the total number of crime in Los Angeles with respect to prostitution and vehicle theft crime. The x-axis corresponds to the total number of prostitution incidents and the y-axis to the total number of vehicle theft incidents. The size of the circles on the plot are proportional to the total number of crime. When toggling between years 2003 and 2015, it's easy to see that the number of prostitution and vehicle theft crimes has decreased significantly from 2003, although the total number of crime in each area remains the same. We can see this by simply noting that the size of the circles....ADD MORE <br> </p2>
+               </div>
+                        <button id='id2003'>  Click to toggle between data from <p4> 2003 </p4> and <p3> 2015.</p3></button>
+             </div>
+                <div class ="viz1 Viz"></div>
+
+        </div>
+
+
+
+    <div>
+        <div class="section">
+             <h2> Assignment 2B</h2>
+             <p> Description of assignment 2B....</p>
+              <button id="KMean2" class="kernelButton">K2</button>
+              <button id="KMean3" class="kernelButton">K3</button>
+              <button id="KMean4" class="kernelButton">K4</button>
+              <button id="KMean5" class="kernelButton">K5</button>
+              <button id="KMean6" class="kernelButton">K6</button>
+
+        </div>
+
+        <div class ="viz2 Viz"></div>
+    </div>
 
         <script type="text/javascript">
 
         // Width and height
-        var w = 850;
+        var w = 1000;
         var h = 600;
         var padding = 80;
 
@@ -82,7 +163,7 @@
                 .ticks(8);
 
         //Create SVG element
-        var svg = d3.select("body")
+        var svg = d3.select(".viz1")
                 .append("svg")
                 .attr("width", w)
                 .attr("height", h)
@@ -134,14 +215,16 @@
                 .attr("transform", "translate(" + padding + ",0)")
                 .call(yAxis);
 
-        svg.append("text")
+
+        // Add a title to the graph
+        svg.select("text")
             .attr("x", (w / 2))
             .attr("y", 30)
             .attr("text-anchor", "middle")
             .attr("fill", colors[2])
             .attr("font-family", "sans-serif")
             .style("font-size", "20px")
-            .text("Title");
+            .text("Los Angeles crimes in 2003");
 
         // now add titles to the axes
         svg.append("text")
@@ -188,6 +271,7 @@
 
         updateCircles (numpros, numvehicle, total,col);
         updateLabels (numpros, numvehicle, total,lcol);
+        updateTitle(year,lcol);
 
 
         });
@@ -199,6 +283,7 @@
                         .transition()
                         .delay(100)
                         .duration(1000)
+                        .ease("linear")
                         // .each("start", function() { d3.select(this).attr("fill", "magenta");})
                         .attr("cx", function(d) {return xScale(d[numpros]);})
                         .attr("cy", function(d) {return yScale(d[numvehicle]);})
@@ -214,6 +299,7 @@
                         .transition()
                         .delay(100)
                         .duration(1200)
+                        .ease("linear")
                         .text(function(d) {
                             return d['PdDistrict'];
                          })
@@ -228,16 +314,155 @@
                         .attr("fill", lcol);
             }
 
-
+        function updateTitle (year, col) {
+        svg.select("text")
+                .transition()
+                .duration(1000)
+                .ease("linear")
+                .attr("x", (w / 2))
+                .attr("y", 30)
+                .attr("text-anchor", "middle")
+                .attr("fill", col)
+                .attr("font-family", "sans-serif")
+                .style("font-size", "20px")
+                .text("Los Angeles crimes in "+ year);
+            }
 
 
     });
+
+// ---------------------------------------------- Vizualization 2 ----------------------------------------------//
+
+            //Width and height
+            var w2 = 700;
+            var h = 700;
+            //Define map projection
+            var projection = d3.geo.mercator()
+                .center([-122.41819474198758, 37.774145825475955])
+                .scale(200000)
+                .translate([w2 / 2, h / 2]);
+
+            //Define path generator
+            var path = d3.geo.path()
+                             .projection(projection);
+
+            //Create SVG element
+            var svg = d3.select(".viz2")
+                        .append("svg")
+                        .attr("width", w2)
+                        .attr("height", h);
+
+            var sanFran = svg.append("g");
+            var locations = svg.append("g");
+            var centers = svg.append("g");
+
+      var color = ['#4286f4','#f47d41', '#f4f441', '#41f441','#eb41f4'];
+
+
+                //Bind data and create one path per GeoJSON feature
+               d3.json("https://raw.githubusercontent.com/suneman/socialdataanalysis2017/master/files/sfpddistricts.geojson", function(json){
+                sanFran.selectAll("path")
+                    .data(json.features)
+                    .enter()
+                    .append("path")
+                    .attr("d", path)
+                    .style("fill", "#E6E6E6")
+                    .attr('stroke-width',0.5)
+                    .attr('stroke',"#626262");
+
+                //Load in cities data
+
+                d3.csv("DataSet2B.csv", function(data_loc) {
+                    console.log(json);
+                    locations.selectAll("circle")
+                       .data(data_loc)
+                       .enter()
+                       .append("circle")
+                       .attr("cx", function(d) {
+                           return projection([d.X, d.Y])[0];
+                       })
+                       .attr("cy", function(d) {
+                           return projection([d.X, d.Y])[1];
+                       })
+                       .attr("r", 5)
+                       .style("fill", function(d){
+               var value = d.KMean4;
+               return color[value];
+               console.log(values);
+             })
+             .style("opacity",0.75);
+                    });
+
+                d3.csv("DataSet2B_center_new2.csv", function(data_center){
+                    centers.selectAll("circle")
+                        .data(data_center)
+                        .enter()
+                        .append("circle")
+                        .attr("cx", function(d) {
+                            return projection([+d.X_k6, +d.Y_k6])[0]
+                            console.log(projection([d.X_k4, d.Y_k4])[0])
+                        })
+                        .attr("cy", function(d) {
+                            return projection([+d.Y_k6, +d.Y_k6])[1]
+                            console.log(projection([d.Y_k4, d.Y_k4])[1])
+                        })
+                        .attr("r", 10)
+            .style("fill", "red")
+            .attr("stroke", "black")
+                    });
+
+                    function drawLocation(k_ID) {
+                        locations.selectAll("circle").remove()
+                        d3.csv("DataSet2B.csv", function(data_loc) {
+                            console.log(json);
+                            locations.selectAll("circle")
+                               .data(data_loc)
+                               .enter()
+                               .append("circle")
+                               .attr("cx", function(d) {
+                                   return projection([d.X, d.Y])[0];
+                               })
+                               .attr("cy", function(d) {
+                                   return projection([d.X, d.Y])[1];
+                               })
+                               .attr("r", 5)
+                               .style("fill", function(d){
+                       var value = d[k_ID];
+                                     return color[value];
+                     })
+                     .style("opacity",0.75);
+                            });
+                        }
+
+                        function drawCenters(k_ID) {
+                            centers.selectAll("circle").remove()
+                            d3.csv("DataSet2B_center_new3.csv", function(data_center){
+                                centers.selectAll("circle")
+                                    .data(data_center)
+                                    .enter()
+                                    .append("circle")
+                                    .attr("cx", function(d) {
+                                        return projection([+d['X_'+k_ID], +d['Y_'+k_ID]])[0]
+                                    })
+                                    .attr("cy", function(d) {
+                                        return projection([+d['X_'+k_ID], +d['Y_'+k_ID]])[1]
+                                    })
+                                    .attr("r", 10)
+                        .style("fill", "red")
+                        .attr("stroke", "black")
+                                });
+                            }
+
+d3.selectAll(".kernelButton").on("click", function(){
+            buttonID = d3.select(this).attr("id")
+            drawLocation(buttonID)
+            drawCenters(buttonID)
+            console.log(buttonID)
+            });
+
+
+            });
+
         </script>
-				<div>
-							<a href="https://lovtor.github.io/prufa.html">Snilld</a><br>
-							<a href="https://lovtor.github.io/prufa2.html">Snilld2</a><br>
-							<a href="https://lovtor.github.io/prufa3.html">Snilld3</a><br>
-							<a href="https://lovtor.github.io/prufa4.html">Tjahhhh</a><br>
-				</div>
     </body>
 </html>
