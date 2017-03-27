@@ -376,7 +376,7 @@
 
                 function drawLocation(k_ID) {
                         locations.selectAll("circle").remove()
-                        d3.csv("DataSet2B.csv", function(data_loc) {
+                        d3.csv("DataSet2B_final.csv", function(data_loc) {
                             console.log(json);
                             locations.selectAll("circle")
                                .data(data_loc)
@@ -399,7 +399,7 @@
 
                         function drawCenters(k_ID) {
                             centers.selectAll("circle").remove()
-                            d3.csv("DataSet2B_center.csv", function(data_center){
+                            d3.csv("DataSet2B_center_final.csv", function(data_center){
                                 centers.selectAll("circle")
                                     .data(data_center)
                                     .enter()
